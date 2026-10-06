@@ -58,6 +58,8 @@ app.post("/upload", upload.single("file"), (req, res) => {
   `);
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Website running on port " + PORT);
-});
+const PORT = process.env.PORT || 3000;
+if (require.main === module) {
+  app.listen(PORT, () => console.log("Website running on port " + PORT));
+}
+module.exports = app;
